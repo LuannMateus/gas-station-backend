@@ -4,10 +4,11 @@ import uuid as uuid_lib
 
 class Tank(models.Model):
     id = models.UUIDField(
-        default=uuid_lib.uuid4(),
+        default=uuid_lib.uuid4,
         unique=True,
         primary_key=True,
-        editable=False
+        editable=False,
+        auto_created=True
     )
     type = models.CharField(max_length=120)
     maxCapacity = models.IntegerField()
@@ -16,10 +17,11 @@ class Tank(models.Model):
 
 class FuelPump(models.Model):
     id = models.UUIDField(
-        default=uuid_lib.uuid4(),
+        default=uuid_lib.uuid4,
         unique=True,
         primary_key=True,
-        editable=False
+        editable=False,
+        auto_created=True
     )
     type = models.CharField(max_length=120)
     pricePerLiter = models.FloatField()
