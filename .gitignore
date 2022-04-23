@@ -1,0 +1,7 @@
+# venv
+venv
+venv/**
+venv/pyvenv.cfg
+
+# .mypy_cache
+.mypy_cache
