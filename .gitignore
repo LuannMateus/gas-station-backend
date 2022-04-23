@@ -5,3 +5,10 @@ venv/pyvenv.cfg
 
 # .mypy_cache
 .mypy_cache
+
+# .docker
+.docker/pgData
+.docker/pgData/**
+
+# env
+gas_station_api/gas_station_api/.env
