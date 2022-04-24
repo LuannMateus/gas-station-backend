@@ -1,4 +1,4 @@
-from app.models import Tank, FuelPump
+from app.models import Tank, FuelPump, Fill
 
 from rest_framework import serializers
 
@@ -12,4 +12,11 @@ class TankSerializer(serializers.ModelSerializer):
 class FuelPumpSerializer(serializers.ModelSerializer):
     class Meta:
         model = FuelPump
-        fields = ['id', 'type', 'pricePerLiter', 'tankId']
+        fields = ['id', 'type', 'pricePerLiter', 'tank']
+
+
+class FillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fill
+        fields = ['id', 'pump', 'amount',
+                  'quantityLiters', 'taxPaid', 'fill_at']

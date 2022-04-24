@@ -1,8 +1,12 @@
-from app.views import TankViewSet, FuelPumpViewSet
+import app.views as views
+from django.urls import path
 
-from rest_framework.routers import DefaultRouter
 
-router = DefaultRouter()
-router.register(r'tanks', viewset=TankViewSet)
-router.register(r'fuelPumps', viewset=FuelPumpViewSet)
-urlpatterns = router.urls
+urlpatterns = [
+    path(r'tanks/', views.TankListAndCreateView.as_view()),
+    path(r'tanks/<str:pk>/', views.TankDetailChangeAndDeleteView.as_view()),
+    path(r'fuelPumps/', views.FuelPumpListAndCreateView.as_view()),
+    path(r'fuelPumps/<str:pk>/', views.FuelPumpDetailChangeAndDeleteView.as_view()),
+    path(r'fills/', views.FillListAndCreateView.as_view()),
+    path(r'fills/<str:pk>/', views.FillDetailChangeAndDeleteView.as_view()),
+]
