@@ -7,6 +7,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, ValidationError
 
+from django.db.transaction import atomic
+
+from app.interactors import CreateFillUp
+
 
 class TankListAndCreateView(APIView):
     def get(self, request):
@@ -123,18 +127,16 @@ class FillListAndCreateView(APIView):
 
         return Response(serializer.data)
 
+    @atomic
     def post(self, request):
         pumpId = request.data.get('pump')
         amount = request.data.get('amount')
 
-        pump = FuelPump.objects.get(pk=pumpId)
+        data = CreateFillUp(
+            Tank, FuelPump, Fill).execute(pumpId, amount)
 
-        pricePerLiter = pump.pricePerLiter
-
-        quantityLiters = Fill.get_quantityLiters(amount, pricePerLiter)
-
-        request.data['quantityLiters'] = quantityLiters
-        request.data['taxPaid'] = Fill.get_taxPaid(amount)
+        request.data['quantityLiters'] = data['quantityLiters']
+        request.data['taxPaid'] = data['taxPaid']
 
         serializer = FillSerializer(data=request.data)
 
