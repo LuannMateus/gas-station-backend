@@ -70,3 +70,7 @@ Now you need to enable migrations to create all database entities and relations.
 ```shell
 python manager.py migrate
 ```
+
+## Load Data and Trigger
+
+Finally, it will be necessary to add the initial data and a trigger for the application to work well. For that, just run the scripts that are in the .database folder
