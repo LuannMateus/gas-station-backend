@@ -43,7 +43,7 @@ docker-compose up -d
 
 <br/>
 
-## Env Variables And Run Server
+## Env Variables
 
 After enabling docker to activate the database, now you need to configure the environment variables. For this, create an .env file in the CORE layer and put the same data as in the .env.example file
 
@@ -55,12 +55,6 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 ```
 
-Now, you can activate the server:
-
-```shell
-python manager.py runserver
-```
-
 <br/>
 
 ## Enabling Migrations
@@ -68,9 +62,21 @@ python manager.py runserver
 Now you need to enable migrations to create all database entities and relations. Use this command on gas_station_api directory:
 
 ```shell
-python manager.py migrate
+python manage.py migrate
 ```
+
+<br/>
 
 ## Load Data and Trigger
 
 Finally, it will be necessary to add the initial data and a trigger for the application to work well. For that, just run the scripts that are in the .database folder
+
+<br/>
+
+## Run Server
+
+Now, you can activate the server:
+
+```shell
+python manage.py runserver
+```
