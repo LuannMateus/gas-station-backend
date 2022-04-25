@@ -9,4 +9,7 @@ urlpatterns = [
     path(r'fuelPumps/<str:pk>/', views.FuelPumpDetailChangeAndDeleteView.as_view()),
     path(r'fills/', views.FillListAndCreateView.as_view()),
     path(r'fills/<str:pk>/', views.FillDetailChangeAndDeleteView.as_view()),
+    path(r'fillsWithFuelPumpAndTank/',
+         views.FillWithFuelPumpAndTankList.as_view()),
+
 ]

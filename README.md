@@ -11,6 +11,7 @@
 - Django REST Framework - 3.13.1
 - Psycopg2 - 2.9.3
 - Django-environ - 0.8.1
+- Django-cors-headers - 3.11.0
 
 <br/>
 

@@ -1,6 +1,7 @@
 from django.db import models
 import uuid as uuid_lib
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.timezone import now
 
 
 class Tank(models.Model):
@@ -53,7 +54,8 @@ class Fill(models.Model):
     amount = models.FloatField(
         validators=[MinValueValidator(1.0)]
     )
-    fill_at = models.DateTimeField(auto_now_add=True)
+    fill_at = models.DateField(
+        auto_now_add=False, default=now().date(), blank=True)
 
     def get_taxPaid(amount: float):
         amountTax = amount * 0.13

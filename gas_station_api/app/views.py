@@ -1,5 +1,5 @@
 from app.models import Tank, FuelPump, Fill
-from app.serializers import TankSerializer, FuelPumpSerializer, FillSerializer
+from app.serializers import TankSerializer, FuelPumpSerializer, FillSerializer, FillWithFuelPumpAndTankSerializer
 
 from rest_framework import viewsets
 from rest_framework.views import APIView
@@ -157,7 +157,7 @@ class FillDetailChangeAndDeleteView(APIView):
 
     def get(self, request, pk):
         fill = self.get_object(pk)
-        serializer = FillSerializer(fuelPump)
+        serializer = FillSerializer(fill)
 
         return Response(serializer.data)
 
@@ -203,3 +203,11 @@ class FillDetailChangeAndDeleteView(APIView):
         fill.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class FillWithFuelPumpAndTankList(APIView):
+    def get(self, request):
+        fills = Fill.objects.all()
+        serializer = FillWithFuelPumpAndTankSerializer(fills, many=True)
+
+        return Response(serializer.data)
